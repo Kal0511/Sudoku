@@ -13,6 +13,8 @@ class pointData {
     }
 }
 
+let numEmpty = 81
+
 let lookupTable = new Array(81)
 
 for (let i = 0; i < 81; i++) {
@@ -154,13 +156,13 @@ function generateProblem() {
         //     limit++
         //     continue
         // }
-        while((temp = board[lookupTable[randIndex].index])==null){
+        while ((temp = board[lookupTable[randIndex].index]) == null) {
             randIndex = Math.floor(Math.random() * 81)
         }
         remove(randIndex)
         if (hasMultipleSolutions() > 1) {
             place(randIndex, temp)
-        }else {
+        } else {
             limit++
         }
     }
@@ -279,21 +281,35 @@ function getNumberFromKeyEvent(event) {
     return null;
 }
 
-function toggleCross(htmlIndex, center = true) {
+function toggleCross(htmlIndex, type, center = true) {
     if (center) {
-        boardData[htmlIndex].classList.toggle('selected')
+        boardData[htmlIndex].classList=type
     }
     for (let i = 0; i < 9; i++) {
         if (lookupTable[htmlIndex].x !== i) {
-            boardData[codeCoordsToHtmlIndex(i, lookupTable[htmlIndex].y)].classList.toggle('sub-selected')
+            boardData[codeCoordsToHtmlIndex(i, lookupTable[htmlIndex].y)].classList='sub-' + type
         }
     }
     for (let j = 0; j < 9; j++) {
         if (lookupTable[htmlIndex].y !== j) {
-            boardData[codeCoordsToHtmlIndex(lookupTable[htmlIndex].x, j)].classList.toggle('sub-selected')
+            boardData[codeCoordsToHtmlIndex(lookupTable[htmlIndex].x, j)].classList  = 'sub-' + type
         }
     }
 }
+
+// function emptyCross(htmlIndex) {
+//     boardData[htmlIndex].classList = ""
+//     for (let i = 0; i < 9; i++) {
+//         if (lookupTable[htmlIndex].x !== i) {
+//             boardData[codeCoordsToHtmlIndex(i, lookupTable[htmlIndex].y)].classList = ""
+//         }
+//     }
+//     for (let j = 0; j < 9; j++) {
+//         if (lookupTable[htmlIndex].y !== j) {
+//             boardData[codeCoordsToHtmlIndex(lookupTable[htmlIndex].x, j)].classList = ""
+//         }
+//     }
+// }
 
 boardData.forEach((index, htmlIndex) => {
     index.addEventListener("keydown", (e) => {
@@ -305,14 +321,14 @@ boardData.forEach((index, htmlIndex) => {
         }
         let num;
         if ((num = getNumberFromKeyEvent(e)) !== null) {
-        if(isValid(htmlIndex, num)) {
-            if (index.value !== null) {
-                remove(htmlIndex)
-                place(htmlIndex, num)
-            } else {
-                place(htmlIndex, num)
+            if (isValid(htmlIndex, num)) {
+                if (index.value !== null) {
+                    remove(htmlIndex)
+                    place(htmlIndex, num)
+                } else {
+                    place(htmlIndex, num)
+                }
             }
-        }
             // console.log("t")
         } else {
             // console.log("not num")
@@ -321,15 +337,17 @@ boardData.forEach((index, htmlIndex) => {
     index.addEventListener("click", (e) => {
         e.stopPropagation()
         if (selectedHTMLIndex != null) {
-            toggleCross(selectedHTMLIndex)
+            toggleCross(selectedHTMLIndex, "")
         }
-        toggleCross(htmlIndex, false)
-        index.classList.toggle("selected")
         selectedHTMLIndex = htmlIndex
+        toggleCross(htmlIndex, "selected", false)
+        index.classList.toggle("selected")
         if (menuOptionSelected != null) {
             if (isValid(htmlIndex, menuOptions[menuOptionSelected - 1].innerHTML)) {
                 place(htmlIndex, menuOptions[menuOptionSelected - 1].innerHTML)
             } else {
+                toggleCross(htmlIndex, "red", false)
+                index.classList.toggle("red")
                 remove(htmlIndex)
             }
         }
@@ -338,7 +356,7 @@ boardData.forEach((index, htmlIndex) => {
 
 window.addEventListener("click", () => {
     if (selectedHTMLIndex != null) {
-        toggleCross(selectedHTMLIndex)
+        toggleCross(selectedHTMLIndex, "selected")
         selectedHTMLIndex = null
     }
     if (menuOptionSelected != null) {
