@@ -343,8 +343,9 @@ boardData.forEach((index, htmlIndex) => {
         toggleCross(htmlIndex, "selected", false)
         index.classList.toggle("selected")
         if (menuOptionSelected != null) {
-            if (isValid(htmlIndex, menuOptions[menuOptionSelected - 1].innerHTML)) {
-                place(htmlIndex, menuOptions[menuOptionSelected - 1].innerHTML)
+            if (isValid(htmlIndex, parseInt(menuOptions[menuOptionSelected - 1].innerHTML))) {
+                place(htmlIndex, parseInt(menuOptions[menuOptionSelected - 1].innerHTML))
+                console.log(board)
             } else {
                 toggleCross(htmlIndex, "red", false)
                 index.classList.toggle("red")
@@ -356,7 +357,7 @@ boardData.forEach((index, htmlIndex) => {
 
 window.addEventListener("click", () => {
     if (selectedHTMLIndex != null) {
-        toggleCross(selectedHTMLIndex, "selected")
+        toggleCross(selectedHTMLIndex, "")
         selectedHTMLIndex = null
     }
     if (menuOptionSelected != null) {
