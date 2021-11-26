@@ -5,260 +5,116 @@
     <title>Sudoku</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
+    <script async defer src="sudoku.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --size: min(min(9vh, 9vw), 2.5rem);
-            --lighter:#A7B4CC;
-            --light: #7386A7;
-            --base : #4D648D;
-            --dark: #2D4571;
-            --darker:#132A53;
-            --selected: #e5e5e5
-        }
-
-        html{
-            height: 100%;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            background: var(--lighter);
-            /* margin: auto; */
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-            justify-content: space-evenly;
-        }
-
-        h1 {
-            text-align: center;
-            padding: 1rem;
-            margin: 0;
-            font-size: calc(var(--size)*1.1);
-            color: var(--darker);
-        }
-
-        .board {
-            display: flex;
-            flex-direction: row;
-            gap: 4px;
-            /* width: fit-content; */
-            /*margin: auto;*/
-            flex-wrap: wrap;
-            width: calc((var(--size) * 3 + 2 * 2px) * 3 + 2 * 4px);
-            padding: 4px;
-            background: var(--darker);
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .board > section {
-            display: flex;
-            flex-direction: row;
-            gap: 2px;
-            width: calc(var(--size) * 3 + 2 * 2px);
-            flex-wrap: wrap;
-            background: var(--light);
-        }
-
-        .board > section > textarea {
-            outline: 0;
-            display: flex;
-            /* flex-direction: row; */
-            /* gap: 1em; */
-            /* display: grid; */
-            aspect-ratio: 1;
-            line-height: 1;
-            /* overflow: hidden; */
-            /* height: var(--size); */
-            justify-content: center;
-            width: calc(var(--size));
-            font-size: calc(var(--size));
-            background: white;
-            overflow: hidden;
-            resize: none;
-            padding: 0;
-            border: 0;
-            text-align: center;
-            color: var(--darker);
-        }
-
-        .board .selected {
-            background: var(--selected);
-        }
-
-        .board .sub-selected {
-            background: var(--lighter);
-        }
-
-        .board .red {
-            background: #ff9800;
-        }
-
-        .board .sub-red {
-            background: #ffc672;
-        }
-
-        #menu {
-            display: flex;
-            padding-top: 1em;
-            justify-content: center;
-            /* gap: 1em; */
-            /* flex: 1;*/
-        }
-
-        #menu div {
-            aspect-ratio: 1;
-            display: flex;
-            width: calc(var(--size) * 0.9);
-            font-size: calc(var(--size) * 0.9);
-            line-height: 1;
-            justify-content: center;
-            background:  var(--light);
-            color: var(--darker);
-            padding: 4px;
-        }
-
-        #menu .selected {
-            background: var(--selected);
-        }
-
-        .btn-container {
-            padding-top: 1em;
-            display: flex;
-            justify-content: center;
-            padding-bottom: 1em;
-            gap: 1em;
-        }
-
-        .btn-container > * {
-            font-size: calc(var(--size) / 2);
-            background:  var(--light);
-            color: var(--darker);
-            border: 0;
-            padding: 0.25em 0.5em;
-outline: 0;
-        }
-
-        .btn-container > *:active {
-            background:  var(--darker);
-            color: var(--light);
-        }
-
-        .btn-container > select:active {
-            background:  var(--light);
-            color: var(--darker);
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 <h1>Sudoku</h1>
 <section class=board>
     <section>
-        <textarea maxlength=1 id="1-1">1</textarea>
-        <textarea maxlength=1 id="1-2">2</textarea>
-        <textarea maxlength=1 id="1-3">3</textarea>
-        <textarea maxlength=1 id="1-4">4</textarea>
-        <textarea maxlength=1 id="1-5">5</textarea>
-        <textarea maxlength=1 id="1-6">6</textarea>
-        <textarea maxlength=1 id="1-7">7</textarea>
-        <textarea maxlength=1 id="1-8">8</textarea>
-        <textarea maxlength=1 id="1-9">9</textarea>
+        <div tabindex="0" id="1-1">1</div>
+        <div tabindex="0" id="1-2">2</div>
+        <div tabindex="0" id="1-3">3</div>
+        <div tabindex="0" id="1-4">4</div>
+        <div tabindex="0" id="1-5">5</div>
+        <div tabindex="0" id="1-6">6</div>
+        <div tabindex="0" id="1-7">7</div>
+        <div tabindex="0" id="1-8">8</div>
+        <div tabindex="0" id="1-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="2-1">1</textarea>
-        <textarea maxlength=1 id="2-2">2</textarea>
-        <textarea maxlength=1 id="2-3">3</textarea>
-        <textarea maxlength=1 id="2-4">4</textarea>
-        <textarea maxlength=1 id="2-5">5</textarea>
-        <textarea maxlength=1 id="2-6">6</textarea>
-        <textarea maxlength=1 id="2-7">7</textarea>
-        <textarea maxlength=1 id="2-8">8</textarea>
-        <textarea maxlength=1 id="2-9">9</textarea>
+        <div tabindex="0" id="2-1">1</div>
+        <div tabindex="0" id="2-2">2</div>
+        <div tabindex="0" id="2-3">3</div>
+        <div tabindex="0" id="2-4">4</div>
+        <div tabindex="0" id="2-5">5</div>
+        <div tabindex="0" id="2-6">6</div>
+        <div tabindex="0" id="2-7">7</div>
+        <div tabindex="0" id="2-8">8</div>
+        <div tabindex="0" id="2-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="3-1">1</textarea>
-        <textarea maxlength=1 id="3-2">2</textarea>
-        <textarea maxlength=1 id="3-3">3</textarea>
-        <textarea maxlength=1 id="3-4">4</textarea>
-        <textarea maxlength=1 id="3-5">5</textarea>
-        <textarea maxlength=1 id="3-6">6</textarea>
-        <textarea maxlength=1 id="3-7">7</textarea>
-        <textarea maxlength=1 id="3-8">8</textarea>
-        <textarea maxlength=1 id="3-9">9</textarea>
+        <div tabindex="0" id="3-1">1</div>
+        <div tabindex="0" id="3-2">2</div>
+        <div tabindex="0" id="3-3">3</div>
+        <div tabindex="0" id="3-4">4</div>
+        <div tabindex="0" id="3-5">5</div>
+        <div tabindex="0" id="3-6">6</div>
+        <div tabindex="0" id="3-7">7</div>
+        <div tabindex="0" id="3-8">8</div>
+        <div tabindex="0" id="3-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="4-1">1</textarea>
-        <textarea maxlength=1 id="4-2">2</textarea>
-        <textarea maxlength=1 id="4-3">3</textarea>
-        <textarea maxlength=1 id="4-4">4</textarea>
-        <textarea maxlength=1 id="4-5">5</textarea>
-        <textarea maxlength=1 id="4-6">6</textarea>
-        <textarea maxlength=1 id="4-7">7</textarea>
-        <textarea maxlength=1 id="4-8">8</textarea>
-        <textarea maxlength=1 id="4-9">9</textarea>
+        <div tabindex="0" id="4-1">1</div>
+        <div tabindex="0" id="4-2">2</div>
+        <div tabindex="0" id="4-3">3</div>
+        <div tabindex="0" id="4-4">4</div>
+        <div tabindex="0" id="4-5">5</div>
+        <div tabindex="0" id="4-6">6</div>
+        <div tabindex="0" id="4-7">7</div>
+        <div tabindex="0" id="4-8">8</div>
+        <div tabindex="0" id="4-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="5-1">1</textarea>
-        <textarea maxlength=1 id="5-2">2</textarea>
-        <textarea maxlength=1 id="5-3">3</textarea>
-        <textarea maxlength=1 id="5-4">4</textarea>
-        <textarea maxlength=1 id="5-5">5</textarea>
-        <textarea maxlength=1 id="5-6">6</textarea>
-        <textarea maxlength=1 id="5-7">7</textarea>
-        <textarea maxlength=1 id="5-8">8</textarea>
-        <textarea maxlength=1 id="5-9">9</textarea>
+        <div tabindex="0" id="5-1">1</div>
+        <div tabindex="0" id="5-2">2</div>
+        <div tabindex="0" id="5-3">3</div>
+        <div tabindex="0" id="5-4">4</div>
+        <div tabindex="0" id="5-5">5</div>
+        <div tabindex="0" id="5-6">6</div>
+        <div tabindex="0" id="5-7">7</div>
+        <div tabindex="0" id="5-8">8</div>
+        <div tabindex="0" id="5-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="6-1">1</textarea>
-        <textarea maxlength=1 id="6-2">2</textarea>
-        <textarea maxlength=1 id="6-3">3</textarea>
-        <textarea maxlength=1 id="6-4">4</textarea>
-        <textarea maxlength=1 id="6-5">5</textarea>
-        <textarea maxlength=1 id="6-6">6</textarea>
-        <textarea maxlength=1 id="6-7">7</textarea>
-        <textarea maxlength=1 id="6-8">8</textarea>
-        <textarea maxlength=1 id="6-9">9</textarea>
+        <div tabindex="0" id="6-1">1</div>
+        <div tabindex="0" id="6-2">2</div>
+        <div tabindex="0" id="6-3">3</div>
+        <div tabindex="0" id="6-4">4</div>
+        <div tabindex="0" id="6-5">5</div>
+        <div tabindex="0" id="6-6">6</div>
+        <div tabindex="0" id="6-7">7</div>
+        <div tabindex="0" id="6-8">8</div>
+        <div tabindex="0" id="6-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="7-1">1</textarea>
-        <textarea maxlength=1 id="7-2">2</textarea>
-        <textarea maxlength=1 id="7-3">3</textarea>
-        <textarea maxlength=1 id="7-4">4</textarea>
-        <textarea maxlength=1 id="7-5">5</textarea>
-        <textarea maxlength=1 id="7-6">6</textarea>
-        <textarea maxlength=1 id="7-7">7</textarea>
-        <textarea maxlength=1 id="7-8">8</textarea>
-        <textarea maxlength=1 id="7-9">9</textarea>
+        <div tabindex="0" id="7-1">1</div>
+        <div tabindex="0" id="7-2">2</div>
+        <div tabindex="0" id="7-3">3</div>
+        <div tabindex="0" id="7-4">4</div>
+        <div tabindex="0" id="7-5">5</div>
+        <div tabindex="0" id="7-6">6</div>
+        <div tabindex="0" id="7-7">7</div>
+        <div tabindex="0" id="7-8">8</div>
+        <div tabindex="0" id="7-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="8-1">1</textarea>
-        <textarea maxlength=1 id="8-2">2</textarea>
-        <textarea maxlength=1 id="8-3">3</textarea>
-        <textarea maxlength=1 id="8-4">4</textarea>
-        <textarea maxlength=1 id="8-5">5</textarea>
-        <textarea maxlength=1 id="8-6">6</textarea>
-        <textarea maxlength=1 id="8-7">7</textarea>
-        <textarea maxlength=1 id="8-8">8</textarea>
-        <textarea maxlength=1 id="8-9">9</textarea>
+        <div tabindex="0" id="8-1">1</div>
+        <div tabindex="0" id="8-2">2</div>
+        <div tabindex="0" id="8-3">3</div>
+        <div tabindex="0" id="8-4">4</div>
+        <div tabindex="0" id="8-5">5</div>
+        <div tabindex="0" id="8-6">6</div>
+        <div tabindex="0" id="8-7">7</div>
+        <div tabindex="0" id="8-8">8</div>
+        <div tabindex="0" id="8-9">9</div>
     </section>
     <section>
-        <textarea maxlength=1 id="9-1">1</textarea>
-        <textarea maxlength=1 id="9-2">2</textarea>
-        <textarea maxlength=1 id="9-3">3</textarea>
-        <textarea maxlength=1 id="9-4">4</textarea>
-        <textarea maxlength=1 id="9-5">5</textarea>
-        <textarea maxlength=1 id="9-6">6</textarea>
-        <textarea maxlength=1 id="9-7">7</textarea>
-        <textarea maxlength=1 id="9-8">8</textarea>
-        <textarea maxlength=1 id="9-9">9</textarea>
+        <div tabindex="0" id="9-1">1</div>
+        <div tabindex="0" id="9-2">2</div>
+        <div tabindex="0" id="9-3">3</div>
+        <div tabindex="0" id="9-4">4</div>
+        <div tabindex="0" id="9-5">5</div>
+        <div tabindex="0" id="9-6">6</div>
+        <div tabindex="0" id="9-7">7</div>
+        <div tabindex="0" id="9-8">8</div>
+        <div tabindex="0" id="9-9">9</div>
     </section>
 </section>
 
@@ -286,7 +142,7 @@ outline: 0;
     <button id=clearBoard onclick="clearBoard()">Clear</button>
 </div>
 <footer>
-    <script async src="sudoku.js"></script>
+
 </footer>
 </body>
 </html>

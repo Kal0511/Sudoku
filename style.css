@@ -1,0 +1,246 @@
+:root {
+    --size: min(min(9vh, 9vw), 2.5rem);
+    --lighter:#A7B4CC;
+    --light: #7386A7;
+    --base : #4D648D;
+    --dark: #2D4571;
+    --darker:#132A53;
+    --selected: #e5e5e5
+}
+
+html{
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    background: var(--lighter);
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: space-evenly;
+}
+
+h1 {
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+    font-size: calc(var(--size)*1.1);
+    color: var(--darker);
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    /* width: fit-content; */
+    /*margin: auto;*/
+    flex-wrap: wrap;
+    width: calc((var(--size) * 3 + 2 * 2px) * 3 + 2 * 4px);
+    padding: 4px;
+    background: var(--darker);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.board > section {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    width: calc(var(--size) * 3 + 2 * 2px);
+    flex-wrap: wrap;
+    background: var(--light);
+}
+
+.board > section > * {
+    position: relative;
+    -webkit-writing-mode: horizontal-tb !important;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: monospace;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    resize: auto;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    column-count: initial !important;
+    margin: 0em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding: 2px;
+
+    outline: 0;
+    display: flex;
+    /* flex-direction: row; */
+    /* gap: 1em; */
+    /* display: grid; */
+    aspect-ratio: 1;
+    line-height: 1;
+    /* overflow: hidden; */
+    /* height: var(--size); */
+    justify-content: center;
+    width: calc(var(--size));
+    font-size: calc(var(--size));
+    background: white;
+    overflow: hidden;
+    resize: none;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    color: var(--darker);
+}
+
+.board > section > div > div{
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.board .selected {
+    background: var(--selected);
+}
+
+.board .sub-selected {
+    background: var(--lighter);
+}
+
+.board .red {
+    background: #ff9800;
+}
+
+.board .sub-red {
+    background: #ffc672;
+}
+
+#menu {
+    display: flex;
+    padding-top: 1em;
+    justify-content: center;
+    /* gap: 1em; */
+    /* flex: 1;*/
+}
+
+#menu div {
+    aspect-ratio: 1;
+    display: flex;
+    width: calc(var(--size) * 0.9);
+    font-size: calc(var(--size) * 0.9);
+    line-height: 1;
+    justify-content: center;
+    background:  var(--light);
+    color: var(--darker);
+    padding: 4px;
+}
+
+#menu .selected {
+    background: var(--selected);
+}
+
+.btn-container {
+    padding-top: 1em;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+    gap: 1em;
+}
+
+.btn-container > * {
+    font-size: calc(var(--size) / 2);
+    background:  var(--light);
+    color: var(--darker);
+    border: 0;
+    padding: 0.25em 0.5em;
+    outline: 0;
+}
+
+.btn-container > *:active {
+    background:  var(--darker);
+    color: var(--light);
+}
+
+.btn-container > select:active {
+    background: var(--light);
+    color: var(--darker);
+}
+
+.bg-data{
+    position: absolute;
+    /* top: 0; */
+    /* left: 33%; */
+    /* z-index: -1; */
+    font-size: calc(var(--size)/3);
+    width: 80%;
+    /* aspect-ratio: 80/100; */
+    /* flex: auto; */
+    display: flex;
+    padding: 5% 10%;
+    height: 90%;
+}
+
+.A{
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.B{
+
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.C{
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.D{
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.E{
+    justify-content: center;
+    align-items: center;
+}
+
+.F{
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.G{
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.H{
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.I{
+    justify-content: flex-end;
+    align-items: flex-end;
+}

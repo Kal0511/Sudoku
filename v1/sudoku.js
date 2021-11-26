@@ -1,4 +1,4 @@
-HTMLboardData = document.querySelectorAll(".board div")
+boardData = document.querySelectorAll(".board textarea")
 menuOptions = document.querySelectorAll("#menu div")
 
 function sleep(ms) {
@@ -34,20 +34,9 @@ for (let i = 0; i < 9; i++) {
         board[i + j * 9] = null
     }
 }
-
-
-HTMLboardData.forEach((index, n) => {
-    // index.innerHTML = board[n] || null;
-    index.innerHTML = "<div></div>"
-    for(let i=0;i<9;i++){
-        index.innerHTML += "<span class='bg-data " + String.fromCharCode(65+i) + "'>" + (i+1) + "</span>"
-    }
+boardData.forEach((index, n) => {
+    index.value = board[n] || null;
 })
-let boardData = document.querySelectorAll(".board div div")
-console.log(boardData.length)
-// for(let i=0;i<81;i++){
-//     boardData.push(HTMLboardData[i])
-// }
 
 // function isValid(x, y, num) {
 //     if (board[x + y * 9] != null) {
@@ -67,7 +56,7 @@ console.log(boardData.length)
 //     let htmlCoord = transform(x + y * 9)
 //     let start = htmlCoord - htmlCoord % 9
 //     for (i = start; i < start + 9; i++) {
-//         if (boardData[i].innerHTML === num.toString() && htmlCoord !== i) {
+//         if (boardData[i].value === num.toString() && htmlCoord !== i) {
 //             return false;
 //         }
 //     }
@@ -115,10 +104,10 @@ function generateSolution(i = 0, limit = 81) {
     for (let n = 0; n < 9; n++) {
         if (isValid(i, start)) {
             board[lookupTable[i].index] = start
-            // boardData[i].innerHTML = start
+            // boardData[i].value = start
             if (!generateSolution(i + 1, limit - 1)) {
                 board[lookupTable[i].index] = null
-                // boardData[i].innerHTML = null
+                // boardData[i].value = null
             } else {
                 place(i, start)
                 return true
@@ -205,7 +194,7 @@ function clearBoard() {
 // function place(x, y, num) {
 //     if (isValid(x, y, num)) {
 //         board[x + y * 9] = num
-//         boardData[transform(x + y * 9)].innerHTML = num
+//         boardData[transform(x + y * 9)].value = num
 //         return true
 //     } else {
 //         return false;
@@ -214,13 +203,13 @@ function clearBoard() {
 
 function place(htmlIndex, num) {
     board[lookupTable[htmlIndex].index] = num
-    boardData[htmlIndex].innerHTML = num
+    boardData[htmlIndex].value = num
 }
 
 function validPlace(htmlIndex, num) {
     if (isValid(htmlIndex, num)) {
         board[lookupTable[htmlIndex].index] = num
-        boardData[htmlIndex].innerHTML = num
+        boardData[htmlIndex].value = num
         return true
     } else {
         return false;
@@ -229,12 +218,12 @@ function validPlace(htmlIndex, num) {
 
 // function remove(x, y) {
 //     board[x + y * 9] = null
-//     boardData[transform(x + y * 9)].innerHTML = null
+//     boardData[transform(x + y * 9)].value = null
 // }
 
 function remove(htmlIndex) {
     board[lookupTable[htmlIndex].index] = null
-    boardData[htmlIndex].innerHTML = null
+    boardData[htmlIndex].value = null
 }
 
 function transform(n) {
@@ -323,8 +312,7 @@ function toggleCross(htmlIndex, type, center = true) {
 // }
 
 boardData.forEach((index, htmlIndex) => {
-    index.addEventListener("keyup", (e) => {
-        console.log(e.keyCode, htmlIndex, index.innerHTML)
+    index.addEventListener("keydown", (e) => {
         e.preventDefault();
         e.stopPropagation()
         if (e.keyCode === 8 || e.keyCode === 46) {
@@ -334,7 +322,7 @@ boardData.forEach((index, htmlIndex) => {
         let num;
         if ((num = getNumberFromKeyEvent(e)) !== null) {
             if (isValid(htmlIndex, num)) {
-                if (index.innerHTML !== null) {
+                if (index.value !== null) {
                     remove(htmlIndex)
                     place(htmlIndex, num)
                 } else {
