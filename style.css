@@ -21,6 +21,7 @@ body {
     flex-direction: column;
     min-height: 100%;
     justify-content: space-evenly;
+    text-rendering: optimizeLegibility;
 }
 
 h1 {
@@ -57,17 +58,8 @@ h1 {
 .board > section > * {
     position: relative;
     -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
     font-family: monospace;
     text-rendering: auto;
-    color: -internal-light-dark(black, white);
     letter-spacing: normal;
     word-spacing: normal;
     line-height: normal;
@@ -78,16 +70,13 @@ h1 {
     text-align: start;
     appearance: auto;
     -webkit-rtl-ordering: logical;
-    resize: auto;
     cursor: text;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
     column-count: initial !important;
     margin: 0em;
     border-width: 1px;
     border-style: solid;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
     padding: 2px;
 
