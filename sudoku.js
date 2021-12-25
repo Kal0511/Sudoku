@@ -39,9 +39,11 @@ for (let i = 0; i < 9; i++) {
 HTMLboardData.forEach((index, n) => {
     // index.innerHTML = board[n] || null;
     index.innerHTML = "<div></div>"
-    for(let i=0;i<9;i++){
-        index.innerHTML += "<span class='bg-data " + String.fromCharCode(65+i) + "'>" + (i+1) + "</span>"
-    }
+
+    // for(let i=0;i<9;i++){
+    //     index.innerHTML += "<span class='bg-data " + String.fromCharCode(65+i) + "'>" + (i+1) + "</span>"
+    // }
+
 })
 let boardData = document.querySelectorAll(".board div div")
 console.log(boardData.length)
